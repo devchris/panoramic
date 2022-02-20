@@ -7,8 +7,11 @@ module Panoramic
     def find_templates(name, prefix, partial, details, key=nil, locals=[])
       return [] if @@resolver_options[:only] && !@@resolver_options[:only].include?(prefix)
 
+      user_id = @@resolver_options[:user_id]
+
       path = build_path(name, prefix)
       conditions = {
+        :user_id => user_id,
         :path    => path,
         :locale  => [normalize_array(details[:locale]).first, nil],
         :format  => normalize_array(details[:formats]),

@@ -3,6 +3,7 @@ module Panoramic
     module ActiveRecord
       def store_templates
         class_eval do
+          validates :user_id, :presence => true
           validates :body,    :presence => true
           validates :path,    :presence => true
           validates :format,  :inclusion => Mime::SET.symbols.map(&:to_s)
